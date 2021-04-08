@@ -1,25 +1,26 @@
 {
-  "name": "webcam-base64-streaming",
+  "name": "WebRTC-Example",
   "version": "1.0.0",
-  "description": "Webcam live streaming with WebSockets and Base64",
-  "main": "server.js",
+  "description": "An 'as simple as it gets' WebRTC example.",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexcambose/webcam-base64-streaming.git"
+    "url": "git+https://github.com/shanet/WebRTC-Example.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "webrtc"
+  ],
+  "author": "shane tully",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexcambose/webcam-base64-streaming/issues"
+    "url": "https://github.com/shanet/WebRTC-Example/issues"
   },
-  "homepage": "https://github.com/alexcambose/webcam-base64-streaming#readme",
+  "homepage": "https://github.com/shanet/WebRTC-Example#readme",
   "dependencies": {
-    "express": "^4.16.3",
-    "ws": "^6.0.0"
+    "ws": "^3.3.2"
   }
 }
