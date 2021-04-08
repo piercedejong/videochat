@@ -1,11 +1,9 @@
-
+const HTTPS_PORT = process.env.PORT || 5000;
 
 const fs = require('fs');
 const https = require('https');
-const ws = require('ws');
-const WebSocketServer = ws.Server;
-
-const HTTPS_PORT = process.env.PORT || 3000;
+const WebSocket = require('ws');
+const WebSocketServer = WebSocket.Server;
 
 // Yes, TLS is required
 const serverConfig = {
@@ -30,15 +28,15 @@ const handleRequest = function(request, response) {
 };
 
 const httpsServer = https.createServer(serverConfig, handleRequest);
-httpsServer.listen(HTTPS_PORT);
+httpsServer.listen(HTTPS_PORT, '0.0.0.0');
 
 // ----------------------------------------------------------------------------------------
 
 // Create a server for handling websocket calls
-const wss = new ws.Server({server: httpsServer});
+const wss = new WebSocketServer({server: httpsServer});
 
-wss.on('connection', function(webserver) {
-  webserver.on('message', function(message) {
+wss.on('connection', function(ws) {
+  ws.on('message', function(message) {
     // Broadcast any received message to all clients
     console.log('received: %s', message);
     wss.broadcast(message);
