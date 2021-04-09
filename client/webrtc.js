@@ -10,7 +10,10 @@ const pages = ["0002.jpg","0003.jpg","0004.jpg","0005.jpg","0006.jpg","0007.jpg"
   ,"0020.jpg","0021.jpg","0022.jpg","0023.jpg","0024.jpg","0025.jpg","0026.jpg","0027.jpg","0028.jpg","0029.jpg"
   ,"0030.jpg","0031.jpg","0032.jpg","0033.jpg","0034.jpg"]
 
-const audio = [null, null, null, "night.mp3", "walking.mp3", "walking.mp3", null, null, "dragon.mp3", null, "water.mp3", null, "boat.mp3", null, "hungry.mp3", null, null, "moose.mp3", null, "climb.mp3", "falling.mp3", null, "hotair.mp3", null, null, "drawing.mp3", null, null, null, "walking.mp3", "drawing.mp3", null, "sleeping.mp3"]
+const audio = [null, null, null, "night.mp3", "walking.mp3", "walking.mp3", null, null, "dragon.mp3"
+  , null, "water.mp3", null, "boat.mp3", null, "hungry.mp3", null, null, "moose.mp3", null, "climb.mp3",
+  "falling.mp3", null, "hotair.mp3", null, null, "drawing.mp3", null, null, null, "walking.mp3",
+  "drawing.mp3", null, "sleeping.mp3"]
 
 var currentPage = 0;
 
@@ -32,7 +35,7 @@ function pageReady() {
   localVideo = document.getElementById('localVideo');
   remoteVideo = document.getElementById('remoteVideo');
 
-  serverConnection = new WebSocket('wss://' + window.location.hostname + ':8443');
+  serverConnection = new WebSocket('wss://' + window.location.hostname);
   serverConnection.onmessage = gotMessageFromServer;
 
   var constraints = {
@@ -61,7 +64,7 @@ function start(isCaller) {
   if(isCaller) {
     peerConnection.createOffer().then(createdDescription).catch(errorHandler);
   }
-  // document.getElementById("start").style.display = "none";
+  document.getElementById("start").style.display = "none";
   // document.getElementById("remoteVideo").style.display = "block";
 }
 
