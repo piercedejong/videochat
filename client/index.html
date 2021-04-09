@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <!-- <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script> -->
     <!-- <script src="webrtc.js"></script> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="/css/index.css" rel="stylesheet" type="text/css"/>
+
   </head>
 
-  <body>
-    <video id="localVideo" autoplay muted style="width:40%;"></video>
+  <body style="margin:0px">
+    <div class="bg" style="background-image: url(/image/background.jpeg)"></div>
+
+    <div class="container">
+      <div class="row pt-5">
+        <h1 class="text-center pt-5">Story Time with Rhys</h1>
+      </div>
+      <div class="row pt-5">
+        <div class="col">
+
+        </div>
+        <div class="col text-center">
+          <a class="btn btn-info btn-lrg" href="client/omaandopa.html">Connect as Oma and Opa</a>
+        </div>
+        <div class="col text-center">
+          <a class="btn btn-warning btn-lrg" href="client/rhys.html">Connect as Rhys</a>
+        </div>
+        <div class="col">
+
+        </div>
+      </div>
+    </div>
+    <!-- <video id="localVideo" autoplay muted style="width:40%;"></video>
     <video id="remoteVideo" autoplay style="width:40%;"></video>
 
     <br />
@@ -14,7 +39,8 @@
     <input type="button" id="start" onclick="start(true)" value="Start Video"></input>
 
     <script type="text/javascript">
-        // pageReady();
-    </script>
+        pageReady();
+    </script> -->
+
   </body>
 </html>

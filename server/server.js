@@ -1,4 +1,4 @@
-const HTTPS_PORT = process.env.PORT || 5000;
+const HTTPS_PORT = 8443;
 
 const fs = require('fs');
 const https = require('https');
@@ -18,13 +18,55 @@ const handleRequest = function(request, response) {
   // Render the single client html file for any request the HTTP server receives
   console.log('request received: ' + request.url);
 
-  if(request.url === '/') {
-    response.writeHead(200, {'Content-Type': 'text/html'});
-    response.end(fs.readFileSync('client/index.html'));
-  } else if(request.url === '/webrtc.js') {
-    response.writeHead(200, {'Content-Type': 'application/javascript'});
-    response.end(fs.readFileSync('client/webrtc.js'));
-  }
+  // if(request.url === '/') {
+  //   response.writeHead(200, {'Content-Type': 'text/html'});
+  //   response.end(fs.readFileSync('client/index.html'));
+  // } else if(request.url === '/webrtc.js') {
+  //   response.writeHead(200, {'Content-Type': 'application/javascript'});
+  //   response.end(fs.readFileSync('client/webrtc.js'));
+  // } else if(request.url === '/rhys'){
+  //   response.writeHead(200, {'Content-Type': 'text/html'});
+  //   response.end(fs.readFileSync('client/rhys.html'));
+  // } else if(request.url === '/omaandopa'){
+  //   response.writeHead(200, {'Content-Type': 'text/html'});
+  //   response.end(fs.readFileSync('client/omaandopa.html'));
+  // }else if(request.url === '/css/index.css'){
+  //   response.writeHead(200, {'Content-Type': 'text/css'});
+  //   response.end(fs.readFileSync('css/index.css'));
+  // }else if(request.url === '/image/background.jpeg'){
+  //   console.log("hello")
+  //   response.writeHead(200, {'Content-Type': 'image/jpeg'});
+  //   response.end(fs.readFileSync('image/background.jpeg'));
+  // }
+
+  fs.readFile('./' + request.url, function(err, data) {
+    if (!err) {
+        var dotoffset = request.url.lastIndexOf('.');
+        var mimetype = dotoffset == -1
+                        ? 'text/plain'
+                        : {
+                            '.html' : 'text/html',
+                            '.ico' : 'image/x-icon',
+                            '.jpg' : 'image/jpeg',
+                            '.jpeg' : 'image/jpeg',
+                            '.png' : 'image/png',
+                            '.gif' : 'image/gif',
+                            '.css' : 'text/css',
+                            '.js' : 'text/javascript',
+                            '.mp3' : 'audio/mpeg'
+                            }[ request.url.substr(dotoffset) ];
+        response.setHeader('Content-type' , mimetype);
+        response.end(data);
+    } else if (request.url === "/") {
+         response.writeHead(200, {'Content-Type': 'text/html'});
+         response.end(fs.readFileSync('client/index.html'));
+    }
+     else {
+        console.log ('file not found: ' + request.url);
+        response.writeHead(404, "Not Found");
+        response.end();
+    }
+});
 };
 
 const httpsServer = https.createServer(serverConfig, handleRequest);

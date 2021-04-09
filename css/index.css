@@ -1,0 +1,77 @@
+.bg {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index:-2;
+  height:100%;
+  width:100%;
+  position:fixed;
+  opacity: 90%
+}
+
+.h1{
+  font-size: 1px;
+}
+
+
+#localVideo, #remoteVideo{
+  width: 100%;
+  border: black 3px solid;
+    border-radius: 0.5rem;
+}
+
+
+#page{
+  width:100%;
+}
+
+
+body{
+  font-family: garamond;
+}
+
+.wrap {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: fit-content;
+}
+
+.wrap > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.wrap > img#page {
+  top: 200px;
+}
+.wrap > img#page2.active {
+  top: 0;
+  transition: top 1.5s;
+}
+
+.sketchy {
+    padding: 4rem 8rem;
+    display: inline-block;
+    border: 3px solid #333333;
+    font-size: 2.5rem;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    text-transform: uppercase;
+    letter-spacing: 0.3ch;
+    background: #ffffff;
+    position: relative;
+
+    &::before {
+        content: '';
+        border: 2px solid #353535;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+        border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+    }
+}
